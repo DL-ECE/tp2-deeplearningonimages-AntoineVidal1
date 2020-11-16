@@ -153,9 +153,9 @@ print(mat_torch[0,3]) # Return first row and 4th column element
 # To do computation on the GPU (graphic card calculation can be 50x faster)
 
 # What is the GPU on this machine ? 
-!nvidia-smi
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-device
+#!nvidia-smi
+#device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+#device
 
 mat_torch = torch.arange(15, device=device).reshape(3,5)
 print(mat_torch) # Create a vector from 0 to 14 and reshape it into a Matrix 3X5
@@ -591,12 +591,13 @@ if __name__ == "__main__" :
 
 """Display the 10 image from train set and 10 images from validation set, print their ground truth"""
 
-def display_10_images(dataset):
-    # YOUR CODE HERE
-    image=next(iter(dataset))
-    for i in range(10):
-      plt.figure()
-      plt.imshow(image[0][i,:,:,:][0])
+if __name__== "_main_" :
+  def display_10_images(dataset):
+      # YOUR CODE HERE
+      image=next(iter(dataset))
+      for i in range(10):
+        plt.figure()
+        plt.imshow(image[0][i,:,:,:][0])
 
 #display_10_images(fmnist_train)
 #display_10_images(fmnist_val)
@@ -730,7 +731,7 @@ if __name__ == "__main__":
     # Network Hyperparameters 
     # YOUR CODE HERE 
     minibatch_size = 100
-    nepoch = 15
+    nepoch = 20
     learning_rate = 0.06
     momentum = 0.02
 
@@ -757,7 +758,10 @@ if __name__ == "__main__":
       print(f"Result Test dataset {eval_result}")
 
 """## Open Analysis
-Same as TP 1 please write a short description of your experiment
+
+J'ai remarqué que pour le learning rate et le momentum, il y a y avait une liaison (le learning rate est la vitesse à laquelle on apprend et le momentum est la vitesse à laquelle on "s'approche du meilleur résultat). Les valeurs que j'ai trouvé donne un apprentissage croissant qui se stabilise autour de 86/88%.
+Un learning rate trop élevé fait enormement baisser le test accuracy( 10%).
+Pour l'algorithme, j'ai laissé celui proposé et j'ai  testé le paramètres les plus optimaux et j'ai toruvé les suivants (voir le code).
 
 # BONUS 
 
