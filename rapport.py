@@ -154,8 +154,8 @@ print(mat_torch[0,3]) # Return first row and 4th column element
 
 # What is the GPU on this machine ? 
 #!nvidia-smi
-#device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-#device
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device
 
 mat_torch = torch.arange(15, device=device).reshape(3,5)
 print(mat_torch) # Create a vector from 0 to 14 and reshape it into a Matrix 3X5
